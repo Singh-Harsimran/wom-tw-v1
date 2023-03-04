@@ -1,3 +1,7 @@
-import Alpine from 'alpinejs'
-window.Alpine = Alpine
-Alpine.start()
+:root {
+    --color-primary: 0 0 0;
+    --color-secondary: 0 0 0;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
