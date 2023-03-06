@@ -11,12 +11,12 @@ module.exports = {
     './templates/customers/*.liquid',
   ],
   theme: {
-    colors:{
-      primary: 'rgb(var(--color-primary) / <alpha-value>)',
-      secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
-      white: '#ffffff'
-    },
     extend: {
+      colors:{
+        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
+        white: '#ffffff'
+      },
       fontSize: {
         xxs : ['.60rem', '.75rem']
       }
