@@ -16,7 +16,11 @@ module.exports = {
       secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
       white: '#ffffff'
     },
-    extend: {},
+    extend: {
+      fontSize: {
+        xxs : ['.60rem', '.75rem']
+      }
+    },
   },
   plugins: [],
 }

@@ -1,10 +1,20 @@
 {%- for block in section.blocks -%}
   {%- case block.type -%}
     {%- when 'announcement' -%}
-    {%- if localization.country.iso_code != blank and localization.country.iso_code == block.settings.country -%}
+    {%- if block.settings.country != blank -%}
+      {%- if block.settings.text != blank and localization.country.iso_code == block.settings.country -%}
+        <div
+          class="announcement-bar bg-primary py-3 px-3 text-center text-white text-xs"
+          role="region"
+          aria-label="Announcement Bar"
+          {{ block.shopify_attributes }}>
+          {{ block.settings.text }}
+        </div>
+      {% endif %}
+    {% else %}      
       {%- if block.settings.text != blank -%}
         <div
-          class="announcement-bar bg-primary py-3 px-3 text-center text-white "
+          class="announcement-bar bg-primary py-3 px-3 text-center text-white text-xs"
           role="region"
           aria-label="Announcement Bar"
           {{ block.shopify_attributes }}>
