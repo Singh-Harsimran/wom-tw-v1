@@ -8,6 +8,5 @@ mix.js('src/js/app.js', 'assets')
       processCssUrls: false,
       postCss: [tailwindcss('tailwind.config.js')]
    });
-   mix.minify('assets/app.css')
 
    

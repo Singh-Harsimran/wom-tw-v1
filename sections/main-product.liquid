@@ -1,3 +1,11 @@
+<div x-data="{ expanded: false }">
+  <button @click="expanded = ! expanded">Toggle Content</button>
+
+  <p x-show="expanded" x-collapse.duration.300ms>
+    Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam porta sem malesuada magna mollis euismod. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+  </p>
+</div>
+
 <section
   id="MainProduct-{{ section.id }}"
   class="max-w-screen-xl mx-auto mt-12"

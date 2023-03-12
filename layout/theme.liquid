@@ -376,7 +376,7 @@
     </script>
   </head>
 
-  <body class="gradient">
+  <body class="gradient" x-data="{drawerOpen:false,drawerTitle:'Panel title'}">
     <a  class="sr-only" href="#MainContent">
       {{ "accessibility.skip_to_text" | t }}
     </a>
@@ -394,6 +394,7 @@
       tabindex="-1">
       {{ content_for_layout }}
     </main>
+    {%- render 'drawer' -%}
 
     {% sections 'footer-group' %}
 

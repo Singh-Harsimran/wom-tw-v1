@@ -4,7 +4,7 @@
     {%- if block.settings.country != blank -%}
       {%- if block.settings.text != blank and localization.country.iso_code == block.settings.country -%}
         <div
-          class="announcement-bar bg-primary py-3 px-3 text-center text-white text-xs"
+          class="announcement-bar bg-primary py-2 px-3 text-center text-white text-xs inline-flex items-baseline"
           role="region"
           aria-label="Announcement Bar"
           {{ block.shopify_attributes }}>
@@ -14,10 +14,13 @@
     {% else %}      
       {%- if block.settings.text != blank -%}
         <div
-          class="announcement-bar bg-primary py-3 px-3 text-center text-white text-xs"
+          class="announcement-bar bg-primary py-2 px-3 text-center text-white text-xs"
           role="region"
           aria-label="Announcement Bar"
           {{ block.shopify_attributes }}>
+          {%- if block.settings.badge != blank -%}
+            <span class="self-center mr-2 text-xs leading-5 px-1.5 border border-transparent font-semibold text-white bg-notification rounded-full">{{ block.settings.badge }}</span>
+          {%- endif -%}
           {{ block.settings.text }}
         </div>
       {% endif %}
@@ -39,7 +42,14 @@
             "id": "text",
             "default": "Welcome to our store",
             "label": "Text"
-          }, {
+          }, 
+          {
+            "type": "text",
+            "id": "badge",
+            "label": "Badge",
+            "info": "i.e. New"
+          }, 
+          {
             "type": "text",
             "id": "country",
             "label": "Country",
