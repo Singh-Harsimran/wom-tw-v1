@@ -1,7 +1,4 @@
-{{ 'collage.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-modal-video.css' | asset_url | stylesheet_tag }}
+
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -17,15 +14,13 @@
   }
 {%- endstyle -%}
 
-<link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
-
-<div class="color-{{ section.settings.color_scheme }} gradient isolate">
-  <div class="page-width{% if section.settings.heading == blank %} no-heading{% endif %} section-{{ section.id }}-padding">
-    <h2 class="collage-wrapper-title inline-richtext {{ section.settings.heading_size }}">{{ section.settings.heading }}</h2>
-    <div class="collage{% if section.settings.mobile_layout == 'collage' %} collage--mobile{% endif %}">
+<div class="">
+  <div class="container">
+    <h2 class="text-4xl text-bold text-center mb-6 uppercase">{{ section.settings.heading }}</h2>
+    <div class="grid">
       {%- for block in section.blocks -%}
         <div
-          class="collage__item collage__item--{{ block.type }} collage__item--{{ section.settings.desktop_layout }}"
+          class="collage__item collage-{{ block.type }} collage__item--{{ section.settings.desktop_layout }}"
           {{ block.shopify_attributes }}
         >
           {%- case block.type -%}
@@ -200,7 +195,7 @@
 
 {% schema %}
 {
-  "name": "t:sections.collage.name",
+  "name": "Collage",
   "tag": "section",
   "class": "section",
   "disabled_on": {
@@ -313,7 +308,7 @@
     },
     {
       "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
+      "content": "Padding"
     },
     {
       "type": "range",
@@ -322,7 +317,7 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
+      "label": "Padding Top",
       "default": 36
     },
     {
@@ -332,74 +327,71 @@
       "max": 100,
       "step": 4,
       "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
+      "label": "Padding Bottom",
       "default": 36
     }
   ],
   "blocks": [
     {
       "type": "image",
-      "name": "t:sections.collage.blocks.image.name",
+      "name": "Image",
       "settings": [
         {
           "type": "image_picker",
           "id": "image",
-          "label": "t:sections.collage.blocks.image.settings.image.label"
+          "label": "Image"
         }
       ]
     },
     {
       "type": "product",
-      "name": "t:sections.collage.blocks.product.name",
+      "name": "Product",
       "settings": [
         {
           "type": "product",
           "id": "product",
-          "label": "t:sections.collage.blocks.product.settings.product.label"
+          "label": "Product"
         },
         {
           "type": "checkbox",
           "id": "second_image",
           "default": false,
-          "label": "t:sections.collage.blocks.product.settings.second_image.label"
+          "label": "Show Second Image"
         }
       ]
     },
     {
       "type": "collection",
-      "name": "t:sections.collage.blocks.collection.name",
+      "name": "Collection",
       "settings": [
         {
           "type": "collection",
           "id": "collection",
-          "label": "t:sections.collage.blocks.collection.settings.collection.label"
+          "label": "Collection"
         }
       ]
     },
     {
       "type": "video",
-      "name": "t:sections.collage.blocks.video.name",
+      "name": "Video",
       "settings": [
         {
           "type": "image_picker",
           "id": "cover_image",
-          "label": "t:sections.collage.blocks.video.settings.cover_image.label"
+          "label": "Cover Image"
         },
         {
           "type": "video_url",
           "id": "video_url",
           "accept": ["youtube", "vimeo"],
           "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-          "label": "t:sections.collage.blocks.video.settings.video_url.label",
-          "placeholder": "t:sections.collage.blocks.video.settings.video_url.placeholder",
-          "info": "t:sections.collage.blocks.video.settings.video_url.info"
+          "label": "Video URL"
         },
         {
           "type": "text",
           "id": "description",
           "default": "Describe the video",
-          "label": "t:sections.collage.blocks.video.settings.description.label",
-          "info": "t:sections.collage.blocks.video.settings.description.info"
+          "label": "Description"
         }
       ]
     }
@@ -407,7 +399,7 @@
   "max_blocks": 3,
   "presets": [
     {
-      "name": "t:sections.collage.presets.name",
+      "name": "Collage",
       "blocks": [
         {
           "type": "image"
