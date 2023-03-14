@@ -1,5 +1,3 @@
-
-
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -14,15 +12,14 @@
   }
 {%- endstyle -%}
 
-<div class="">
-  <div class="container">
-    <h2 class="text-4xl text-bold text-center mb-6 uppercase">{{ section.settings.heading }}</h2>
-    <div class="grid">
+<div class="section-{{ section.id }}-padding">
+  <div class="container mx-auto px-4">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="text-2xl font-bold text-center mb-12 uppercase">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    <div class="grid gap-3 {{ section.settings.columns_mobile }} {{ section.settings.columns_tablet }} {{ section.settings.columns_desktop }}">
       {%- for block in section.blocks -%}
-        <div
-          class="collage__item collage-{{ block.type }} collage__item--{{ section.settings.desktop_layout }}"
-          {{ block.shopify_attributes }}
-        >
+        <div class="collage-{{ block.type }} {{ block.settings.col_span_mobile }} {{ block.settings.row_span_mobile }} {{ block.settings.col_span_tablet }} {{ block.settings.row_span_tablet }} {{ block.settings.col_span_desktop }} {{ block.settings.row_span_desktop }} min-h-[300px]" {{ block.shopify_attributes }} >
           {%- case block.type -%}
             {%- when 'image' -%}
               <div class="collage-card {% if section.settings.card_styles == 'none' %}global-media-settings{% else %}card-wrapper {{ section.settings.card_styles }} color-{{ settings.card_color_scheme }}{% endif %}">
@@ -59,7 +56,8 @@
                 media_aspect_ratio: 'adapt',
                 columns: 2,
                 extend_height: true,
-                wrapper_class: section.settings.card_styles
+                wrapper_class: section.settings.card_styles,
+                custom_title: block.settings.title
               %}
             {%- when 'video' -%}
               <div class="collage-card {% if section.settings.card_styles == 'none' %}global-media-settings{% else %}{{ section.settings.card_styles }} color-{{ settings.card_color_scheme }}{% endif %}">
@@ -206,105 +204,111 @@
       "type": "inline_richtext",
       "id": "heading",
       "default": "Multimedia collage",
-      "label": "t:sections.collage.settings.heading.label"
+      "label": "Section Heading"
     },
     {
       "type": "select",
       "id": "heading_size",
       "options": [
         {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
+          "value": "text-3xl",
+          "label": "Large"
         },
         {
-          "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
+          "value": "text-2xl",
+          "label": "Medium"
         },
         {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
+          "value": "text-xl",
+          "label": "Small"
         }
       ],
-      "default": "h1",
-      "label": "t:sections.all.heading_size.label"
+      "default": "text-2xl",
+      "label": "Heading Size"
     },
     {
       "type": "select",
-      "id": "desktop_layout",
+      "id": "columns_desktop",
       "options": [
         {
-          "value": "left",
-          "label": "t:sections.collage.settings.desktop_layout.options__1.label"
+          "value": "lg:grid-cols-1",
+          "label": "One Column"
         },
         {
-          "value": "right",
-          "label": "t:sections.collage.settings.desktop_layout.options__2.label"
+          "value": "lg:grid-cols-2",
+          "label": "Two Columns"
+        },
+        {
+          "value": "lg:grid-cols-3",
+          "label": "Three Columns"
+        },
+        {
+          "value": "lg:grid-cols-4",
+          "label": "Four Columns"
+        },
+        {
+          "value": "lg:grid-cols-5",
+          "label": "Five Columns"
+        },
+        {
+          "value": "lg:grid-cols-6",
+          "label": "Six Columns"
         }
       ],
-      "default": "left",
-      "label": "t:sections.collage.settings.desktop_layout.label"
+      "default": "lg:grid-cols-1",
+      "label": "Columns Desktop"
     },
     {
       "type": "select",
-      "id": "mobile_layout",
+      "id": "columns_tablet",
       "options": [
         {
-          "value": "collage",
-          "label": "t:sections.collage.settings.mobile_layout.options__1.label"
+          "value": "md:grid-cols-1",
+          "label": "One Column"
         },
         {
-          "value": "column",
-          "label": "t:sections.collage.settings.mobile_layout.options__2.label"
+          "value": "md:grid-cols-2",
+          "label": "Two Columns"
+        },
+        {
+          "value": "md:grid-cols-3",
+          "label": "Three Columns"
+        },
+        {
+          "value": "md:grid-cols-4",
+          "label": "Four Columns"
+        },
+        {
+          "value": "md:grid-cols-5",
+          "label": "Five Columns"
+        },
+        {
+          "value": "md:grid-cols-6",
+          "label": "Six Columns"
         }
       ],
-      "default": "column",
-      "label": "t:sections.collage.settings.mobile_layout.label"
+      "default": "md:grid-cols-1",
+      "label": "Columns Tablet"
     },
     {
       "type": "select",
-      "id": "card_styles",
+      "id": "columns_mobile",
       "options": [
         {
-          "value": "none",
-          "label": "t:sections.collage.settings.card_styles.options__1.label"
+          "value": "grid-cols-1",
+          "label": "One Column"
         },
         {
-          "value": "product-card-wrapper",
-          "label": "t:sections.collage.settings.card_styles.options__2.label"
+          "value": "grid-cols-2",
+          "label": "Two Columns"
+        },
+        {
+          "value": "grid-cols-3",
+          "label": "Three Columns"
         }
       ],
-      "default": "product-card-wrapper",
-      "info": "t:sections.collage.settings.card_styles.info",
-      "label": "t:sections.collage.settings.card_styles.label"
-    },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "options": [
-        {
-          "value": "accent-1",
-          "label": "t:sections.all.colors.accent_1.label"
-        },
-        {
-          "value": "accent-2",
-          "label": "t:sections.all.colors.accent_2.label"
-        },
-        {
-          "value": "background-1",
-          "label": "t:sections.all.colors.background_1.label"
-        },
-        {
-          "value": "background-2",
-          "label": "t:sections.all.colors.background_2.label"
-        },
-        {
-          "value": "inverse",
-          "label": "t:sections.all.colors.inverse.label"
-        }
-      ],
-      "default": "background-1",
-      "label": "t:sections.all.colors.label",
-      "info": "t:sections.all.colors.has_cards_info"
+      "default": "grid-cols-1",
+      "label": "Columns Mobile"
     },
     {
       "type": "header",
@@ -368,6 +372,196 @@
           "type": "collection",
           "id": "collection",
           "label": "Collection"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Custom Heading"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Image"
+        },
+        {
+          "type": "header",
+          "content": "Desktop Layout"
+        },
+        {
+          "type": "select",
+          "id": "col_span_desktop",
+          "options": [
+            {
+              "value": "lg:col-span-1",
+              "label": "Span One Column"
+            },
+            {
+              "value": "lg:col-span-2",
+              "label": "Span Two Columns"
+            },
+            {
+              "value": "lg:col-span-3",
+              "label": "Span Three Columns"
+            },
+            {
+              "value": "lg:col-span-4",
+              "label": "Span Four Columns"
+            },
+            {
+              "value": "lg:col-span-5",
+              "label": "Span Five Columns"
+            },
+            {
+              "value": "lg:col-span-6",
+              "label": "Span Six Columns"
+            }
+          ],
+          "default": "lg:col-span-1",
+          "label": "Column Span Desktop"
+        },
+        {
+          "type": "select",
+          "id": "row_span_desktop",
+          "options": [
+            {
+              "value": "lg:row-span-1",
+              "label": "Span One Row"
+            },
+            {
+              "value": "lg:row-span-2",
+              "label": "Span Two Row"
+            },
+            {
+              "value": "lg:row-span-3",
+              "label": "Span Three Row"
+            },
+            {
+              "value": "lg:row-span-4",
+              "label": "Span Four Row"
+            },
+            {
+              "value": "lg:row-span-5",
+              "label": "Span Five Row"
+            },
+            {
+              "value": "lg:row-span-6",
+              "label": "Span Six Row"
+            }
+          ],
+          "default": "lg:row-span-1",
+          "label": "Row Span Desktop"
+        },
+        {
+          "type": "header",
+          "content": "Tablet Layout"
+        },
+        {
+          "type": "select",
+          "id": "col_span_tablet",
+          "options": [
+            {
+              "value": "md:col-span-1",
+              "label": "Span One Column"
+            },
+            {
+              "value": "md:col-span-2",
+              "label": "Span Two Columns"
+            },
+            {
+              "value": "md:col-span-3",
+              "label": "Span Three Columns"
+            },
+            {
+              "value": "md:col-span-4",
+              "label": "Span Four Columns"
+            },
+            {
+              "value": "md:col-span-5",
+              "label": "Span Five Columns"
+            },
+            {
+              "value": "md:col-span-6",
+              "label": "Span Six Columns"
+            }
+          ],
+          "default": "md:col-span-1",
+          "label": "Column Span Tablet"
+        },
+        {
+          "type": "select",
+          "id": "row_span_tablet",
+          "options": [
+            {
+              "value": "md:row-span-1",
+              "label": "Span One Row"
+            },
+            {
+              "value": "md:row-span-2",
+              "label": "Span Two Row"
+            },
+            {
+              "value": "md:row-span-3",
+              "label": "Span Three Row"
+            },
+            {
+              "value": "md:row-span-4",
+              "label": "Span Four Row"
+            },
+            {
+              "value": "md:row-span-5",
+              "label": "Span Five Row"
+            },
+            {
+              "value": "md:row-span-6",
+              "label": "Span Six Row"
+            }
+          ],
+          "default": "md:row-span-1",
+          "label": "Row Span Tablet"
+        },
+        {
+          "type": "header",
+          "content": "Mobile layout"
+        },
+        {
+          "type": "select",
+          "id": "col_span_mobile",
+          "options": [
+            {
+              "value": "col-span-1",
+              "label": "One Column"
+            },
+            {
+              "value": "col-span-2",
+              "label": "Two Columns"
+            },
+            {
+              "value": "col-span-3",
+              "label": "Three Columns"
+            }
+          ],
+          "default": "col-span-1",
+          "label": "Column Span Mobile"
+        },
+        {
+          "type": "select",
+          "id": "row_span_mobile",
+          "options": [
+            {
+              "value": "row-span-1",
+              "label": "One Row"
+            },
+            {
+              "value": "row-span-2",
+              "label": "Two Row"
+            },
+            {
+              "value": "row-span-3",
+              "label": "Three Row"
+            }
+          ],
+          "default": "row-span-1",
+          "label": "Row Span Mobile"
         }
       ]
     },
@@ -396,7 +590,6 @@
       ]
     }
   ],
-  "max_blocks": 3,
   "presets": [
     {
       "name": "Collage",

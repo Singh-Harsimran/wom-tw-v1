@@ -20,12 +20,9 @@
         "button": {
           "type": "buttons",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false
           }
         }
       },
@@ -35,9 +32,10 @@
         "button"
       ],
       "settings": {
+        "image": "shopify:\/\/shop_images\/h_4.jpg",
+        "image_2": "shopify:\/\/shop_images\/view-of-the-forest-floor.jpg",
         "image_overlay_opacity": 40,
         "image_height": "large",
-        "adapt_height_first_image": false,
         "desktop_content_position": "bottom-center",
         "show_text_box": false,
         "desktop_content_alignment": "center",
@@ -69,6 +67,8 @@
         "text"
       ],
       "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
         "color_scheme": "background-1",
         "full_width": true,
         "padding_top": 40,
@@ -80,17 +80,24 @@
       "settings": {
         "title": "Featured products",
         "heading_size": "h2",
-        "collection": "all",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "best-sellers",
         "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "background-1",
+        "columns_desktop": 5,
+        "full_width": false,
         "show_view_all": false,
-        "swipe_on_mobile": false,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "background-1",
         "image_ratio": "adapt",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
+        "enable_quick_add": false,
         "columns_mobile": "2",
+        "swipe_on_mobile": false,
         "padding_top": 28,
         "padding_bottom": 36
       }
@@ -101,34 +108,96 @@
         "collection-0": {
           "type": "collection",
           "settings": {
-            "collection": ""
-          }
-        },
-        "product": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "second_image": false
+            "collection": "laminate",
+            "title": "",
+            "col_span_desktop": "lg:col-span-2",
+            "row_span_desktop": "lg:row-span-1",
+            "col_span_tablet": "md:col-span-2",
+            "row_span_tablet": "md:row-span-1",
+            "col_span_mobile": "col-span-1",
+            "row_span_mobile": "row-span-1"
           }
         },
         "collection-1": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "vinyl",
+            "title": "",
+            "col_span_desktop": "lg:col-span-1",
+            "row_span_desktop": "lg:row-span-1",
+            "col_span_tablet": "md:col-span-1",
+            "row_span_tablet": "md:row-span-1",
+            "col_span_mobile": "col-span-1",
+            "row_span_mobile": "row-span-1"
+          }
+        },
+        "9cb1ae06-a595-41a1-ac15-5f46c5949b38": {
+          "type": "collection",
+          "settings": {
+            "collection": "engineered-hardwood",
+            "title": "",
+            "col_span_desktop": "lg:col-span-1",
+            "row_span_desktop": "lg:row-span-1",
+            "col_span_tablet": "md:col-span-1",
+            "row_span_tablet": "md:row-span-1",
+            "col_span_mobile": "col-span-1",
+            "row_span_mobile": "row-span-1"
+          }
+        },
+        "ad36ffcc-1e47-4b6f-ac69-1fa1554e3318": {
+          "type": "collection",
+          "settings": {
+            "collection": "patio-furniture",
+            "title": "",
+            "col_span_desktop": "lg:col-span-1",
+            "row_span_desktop": "lg:row-span-1",
+            "col_span_tablet": "md:col-span-1",
+            "row_span_tablet": "md:row-span-1",
+            "col_span_mobile": "col-span-1",
+            "row_span_mobile": "row-span-1"
+          }
+        },
+        "81e8079e-ce40-4e20-8f2b-5ff9a6425aec": {
+          "type": "collection",
+          "settings": {
+            "collection": "rubber-floors",
+            "title": "",
+            "col_span_desktop": "lg:col-span-1",
+            "row_span_desktop": "lg:row-span-1",
+            "col_span_tablet": "md:col-span-1",
+            "row_span_tablet": "md:row-span-1",
+            "col_span_mobile": "col-span-1",
+            "row_span_mobile": "row-span-1"
+          }
+        },
+        "82136a1f-e5ff-4e41-9c84-9d8b28e3d404": {
+          "type": "collection",
+          "settings": {
+            "collection": "vinyl-tile",
+            "title": "",
+            "col_span_desktop": "lg:col-span-2",
+            "row_span_desktop": "lg:row-span-1",
+            "col_span_tablet": "md:col-span-2",
+            "row_span_tablet": "md:row-span-1",
+            "col_span_mobile": "col-span-1",
+            "row_span_mobile": "row-span-1"
           }
         }
       },
       "block_order": [
         "collection-0",
-        "product",
-        "collection-1"
+        "collection-1",
+        "9cb1ae06-a595-41a1-ac15-5f46c5949b38",
+        "ad36ffcc-1e47-4b6f-ac69-1fa1554e3318",
+        "81e8079e-ce40-4e20-8f2b-5ff9a6425aec",
+        "82136a1f-e5ff-4e41-9c84-9d8b28e3d404"
       ],
       "settings": {
         "heading": "Multimedia collage",
         "heading_size": "h2",
-        "desktop_layout": "left",
-        "mobile_layout": "collage",
-        "color_scheme": "background-1",
+        "columns_desktop": "lg:grid-cols-4",
+        "columns_tablet": "md:grid-cols-2",
+        "columns_mobile": "grid-cols-1",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -137,8 +206,9 @@
       "type": "video",
       "settings": {
         "heading": "",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
         "heading_size": "h1",
+        "enable_video_looping": false,
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
         "description": "",
         "full_width": false,
         "color_scheme": "background-1",
@@ -192,9 +262,9 @@
         "background_style": "none",
         "button_label": "",
         "button_link": "",
-        "swipe_on_mobile": false,
         "color_scheme": "background-1",
         "columns_mobile": "1",
+        "swipe_on_mobile": false,
         "padding_top": 36,
         "padding_bottom": 36
       }

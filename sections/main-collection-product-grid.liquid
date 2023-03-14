@@ -139,8 +139,9 @@
               id="product-grid"
               data-id="{{ section.id }}"
               class="
-                grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
-                grid--{{ section.settings.columns_desktop }}-col-desktop
+                grid gap-3 {{ section.settings.columns_mobile }}
+                {{ section.settings.columns_tablet }}
+                {{ section.settings.columns_desktop }}
               "
             >
               {%- for product in collection.products -%}
@@ -188,13 +189,88 @@
       "label": "t:sections.main-collection-product-grid.settings.products_per_page.label"
     },
     {
-      "type": "range",
+      "type": "select",
       "id": "columns_desktop",
-      "min": 1,
-      "max": 5,
-      "step": 1,
-      "default": 4,
-      "label": "t:sections.main-collection-product-grid.settings.columns_desktop.label"
+      "options": [
+        {
+          "value": "lg:grid-cols-1",
+          "label": "One Column"
+        },
+        {
+          "value": "lg:grid-cols-2",
+          "label": "Two Columns"
+        },
+        {
+          "value": "lg:grid-cols-3",
+          "label": "Three Columns"
+        },
+        {
+          "value": "lg:grid-cols-4",
+          "label": "Four Columns"
+        },
+        {
+          "value": "lg:grid-cols-5",
+          "label": "Five Columns"
+        },
+        {
+          "value": "lg:grid-cols-6",
+          "label": "Six Columns"
+        }
+      ],
+      "default": "lg:grid-cols-1",
+      "label": "Columns Desktop"
+    },
+    {
+      "type": "select",
+      "id": "columns_tablet",
+      "options": [
+        {
+          "value": "md:grid-cols-1",
+          "label": "One Column"
+        },
+        {
+          "value": "md:grid-cols-2",
+          "label": "Two Columns"
+        },
+        {
+          "value": "md:grid-cols-3",
+          "label": "Three Columns"
+        },
+        {
+          "value": "md:grid-cols-4",
+          "label": "Four Columns"
+        },
+        {
+          "value": "md:grid-cols-5",
+          "label": "Five Columns"
+        },
+        {
+          "value": "md:grid-cols-6",
+          "label": "Six Columns"
+        }
+      ],
+      "default": "md:grid-cols-1",
+      "label": "Columns Tablet"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "grid-cols-1",
+          "label": "One Column"
+        },
+        {
+          "value": "grid-cols-2",
+          "label": "Two Columns"
+        },
+        {
+          "value": "grid-cols-3",
+          "label": "Three Columns"
+        }
+      ],
+      "default": "grid-cols-1",
+      "label": "Columns Mobile"
     },
     {
       "type": "header",
@@ -282,26 +358,6 @@
       "id": "enable_sorting",
       "default": true,
       "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-collection-product-grid.settings.header_mobile.content"
-    },
-    {
-      "type": "select",
-      "id": "columns_mobile",
-      "default": "2",
-      "label": "t:sections.main-collection-product-grid.settings.columns_mobile.label",
-      "options": [
-        {
-          "value": "1",
-          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__1.label"
-        },
-        {
-          "value": "2",
-          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
-        }
-      ]
     },
     {
       "type": "header",

@@ -84,7 +84,7 @@
                   {% else %}
                     href="{{ block.settings.button_link }}"
                   {% endif %}
-                  class="inline-flex justify-center rounded-lg text-sm font-bold uppercase py-3 px-6 bg-transparent border-2 border-white text-white ring-1 ring-slate-900/10 hover:bg-white/100 hover:text-black"
+                  class="inline-flex justify-center {{ settings.border_radius }} text-sm font-bold uppercase py-3 px-6 bg-transparent border-2 border-white text-white ring-1 ring-slate-900/10 hover:bg-white/100 hover:text-black"
                 >
                   {{- block.settings.button_label | escape -}}
                 </a>

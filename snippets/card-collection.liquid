@@ -28,29 +28,17 @@
     assign card_color_scheme = settings.collection_card_color_scheme
     assign card_style = settings.collection_card_style
   endif
+  if custom_title != blank
+    assign collectionTitle = custom_title
+  else
+    assign collectionTitle = card_collection.title
+  endif
 -%}
 
-<div class="card-wrapper animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}collection-card-wrapper{% endif %}">
-  <div
-    class="
-      card
-      card--{{ card_style }}
-      {% if card_collection.featured_image %} card--media{% else %} card--text{% endif %}
-      {% if card_style == 'card' %} color-{{ card_color_scheme }} gradient{% endif %}
-      {% if extend_height %} card--extend-height{% endif %}
-      {% if card_collection.featured_image == nil and card_style == 'card' %} ratio{% endif %}
-    "
-    style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
-  >
-    <div
-      class="card__inner {% if card_style == 'standard' %}color-{{ card_color_scheme }} gradient{% endif %}{% if card_collection.featured_image or card_style == 'standard' %} ratio{% endif %}"
-      style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
-    >
+<div class="w-full h-full relative" >
       {%- if card_collection.featured_image -%}
-        <div class="card__media">
-          <div class="media media--transparent media--hover-effect">
-            <img
-              srcset="
+        <div class=" absolute inset-0 {{ settings.border_radius }} overflow-hidden group shadow-none hover:shadow-xl transition">
+            <img srcset="
                 {%- if card_collection.featured_image.width >= 165 -%}{{ card_collection.featured_image | image_url: width: 165 }} 165w,{%- endif -%}
                 {%- if card_collection.featured_image.width >= 330 -%}{{ card_collection.featured_image | image_url: width: 330 }} 330w,{%- endif -%}
                 {%- if card_collection.featured_image.width >= 535 -%}{{ card_collection.featured_image | image_url: width: 535 }} 535w,{%- endif -%}
@@ -70,71 +58,51 @@
               height="{{ card_collection.featured_image.height }}"
               width="{{ card_collection.featured_image.width }}"
               loading="lazy"
-              class="motion-reduce"
+              class="w-full h-full object-cover object-center scale-1 transition group-hover:scale-110 transition"
             >
-          </div>
+              <div class="absolute inset-0 bg-black/20 p-6 flex items-end">
+                <div class="w-full">
+                  <h3 class="text-white font-bold uppercase text-xl">{{ collectionTitle }}</h3>
+                  {%- if card_collection.description != blank -%}
+                    <p class="card__caption">
+                      {{- card_collection.description | strip_html | truncatewords: 12 -}}
+                    </p>
+                  {%- endif -%}
+                  <a
+                    {% if card_collection == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ card_collection.url }}"
+                    {% endif %}
+                    class="opacity-60 font-bold group-hover:opacity-100 text-white text-sm inline-flex items-baseline transition"
+                  >
+                    View All&nbsp;<span>{{ card_collection.all_products_count }}</span>&nbsp;Products
+                    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="ml-1 w-4 h-4 self-center">
+                      <path class="" d="M8 13L13 8L8 3" style="stroke:currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round"></path>
+                      <path class="" d="M12 8L2 8" style="stroke:currentColor" stroke-width="1.5"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
         </div>
-      {%- endif -%}
-      <div class="card__content">
-        <div class="card__information">
-          <h3 class="card__heading">
-            <a
-              {% if card_collection == blank %}
-                role="link" aria-disabled="true"
-              {% else %}
-                href="{{ card_collection.url }}"
-              {% endif %}
-              class="full-unstyled-link"
-            >
-              {%- if card_collection.title != blank -%}
-                {{- card_collection.title | escape -}}
-              {%- else -%}
-                {{ 'onboarding.collection_title' | t }}
-              {%- endif -%}
-              {%- if card_collection.description == blank -%}
-                <span class="icon-wrap">{% render 'icon-arrow' %}</span>
-              {%- endif %}
-            </a>
-          </h3>
+      {%- else -%}
+        <div class="">
+          <h3>{{ collectionTitle }}</h3>
           {%- if card_collection.description != blank -%}
             <p class="card__caption">
               {{- card_collection.description | strip_html | truncatewords: 12 -}}
-              <span class="icon-wrap">&nbsp;{% render 'icon-arrow' %}</span>
             </p>
           {%- endif -%}
+          <a
+            {% if card_collection == blank %}
+              role="link" aria-disabled="true"
+            {% else %}
+              href="{{ card_collection.url }}"
+            {% endif %}
+            class="full-unstyled-link"
+          >
+            View Products
+          </a>
         </div>
-      </div>
-    </div>
-    {% if card_style == 'card' or card_collection.featured_image %}
-      <div class="card__content">
-        <div class="card__information">
-          <h3 class="card__heading">
-            <a
-              {% if card_collection == blank %}
-                role="link" aria-disabled="true"
-              {% else %}
-                href="{{ card_collection.url }}"
-              {% endif %}
-              class="full-unstyled-link"
-            >
-              {%- if card_collection.title != blank -%}
-                {{- card_collection.title | escape -}}
-              {%- else -%}
-                {{ 'onboarding.collection_title' | t }}
-              {%- endif -%}
-              {%- if card_collection.featured_image or card_collection.description == blank -%}
-                <span class="icon-wrap">{% render 'icon-arrow' %}</span>
-              {%- endif %}
-            </a>
-          </h3>
-          {%- if card_collection.featured_image == null and card_collection.description != blank -%}
-            <p class="card__caption">
-              {{- card_collection.description | strip_html | truncatewords: 12 -}}
-              <span class="icon-wrap">&nbsp;{% render 'icon-arrow' %}</span>
-            </p>
-          {%- endif -%}
-        </div>
-      </div>
-    {% endif %}
-  </div>
+      {%- endif -%}
 </div>

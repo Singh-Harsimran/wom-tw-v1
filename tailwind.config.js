@@ -15,7 +15,8 @@ module.exports = {
       colors:{
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
         secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
-        white: '#ffffff',
+        white: 'rgb(255 255 255 / <alpha-value>)',
+        black:'rgb(0 0 0 / <alpha-value>)',
         notification:'var(--color-notification)'
       },
       fontSize: {

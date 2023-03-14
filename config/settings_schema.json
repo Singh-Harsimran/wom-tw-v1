@@ -160,7 +160,7 @@
     ]
   },
   {
-    "name": "t:settings_schema.layout.name",
+    "name": "Layout",
     "settings": [
       {
         "type": "range",
@@ -209,6 +209,50 @@
         "default": 8,
         "unit": "px",
         "label": "t:settings_schema.layout.settings.spacing_grid_vertical.label"
+      },
+      {
+        "type": "header",
+        "content": "Border Radius"
+      },
+      {
+        "type": "select",
+        "id": "border_radius",
+        "options": [
+          {
+            "value": "rounded-none",
+            "label": "None"
+          },
+          {
+            "value": "rounded-sm",
+            "label": "Small"
+          },
+          {
+            "value": "rounded",
+            "label": "Regular"
+          },
+          {
+            "value": "rounded-md",
+            "label": "Medium"
+          },
+          {
+            "value": "rounded-lg",
+            "label": "Large"
+          },
+          {
+            "value": "rounded-xl",
+            "label": "Extra Large"
+          },
+          {
+            "value": "rounded-lg",
+            "label": "Large"
+          },
+          {
+            "value": "rounded-full",
+            "label": "Full"
+          }
+        ],
+        "default": "rounded-none",
+        "label": "Border Radius"
       }
     ]
   },
